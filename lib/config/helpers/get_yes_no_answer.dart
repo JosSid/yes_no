@@ -11,12 +11,8 @@ class GetYesNoAnswer {
 
     final response = await _dio.get('https://yesno.wtf/api');
 
-    final yesNoModel = YesNoModel.fromJson(response.data);
+    final yesNoModel = YesNoModel.fromJsonMap(response.data);
 
-    return Message(
-      text: yesNoModel.answer, 
-      fromWho: FromWho.hers,
-      imageUrl: yesNoModel.image
-      );
+    return yesNoModel.toMessageEntity();
   }
 }
